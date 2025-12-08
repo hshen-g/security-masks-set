@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <Configuration status="WARN" monitorInterval="300">
+  <properties>
+    <property name="LOG_HOME">/Users/shenhang/work/logs/masks</property>
+    <property name="LOG_LEVEL">INFO</property>
+    <property name="FILE_NAME">out</property>
+    <property name="LOG_LEVEL_DEBUG">DEBUG</property>
+    <property name="CONSOLE_LOG_PATTERN" value="%highlight{%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5p][BTSN=%X{RequestID}] %l:  - %m %n%throwable}{FATAL=Bright red, ERROR=Bright Magenta, WARN=Bright Blue, INFO=Bright Blue, DEBUG=Normal, TRACE=Normal}"/>
+    <property name="FILE_LOG_PATTERN" value="%highlight{%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5p] %l:  - %m %n%throwable}{FATAL=Bright red, ERROR=Bright Magenta, WARN=Bright Blue, INFO=Bright Blue, DEBUG=Normal, TRACE=Normal}"/>
+  </properties>
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="${CONSOLE_LOG_PATTERN}"/>
+    </Console>
+    <RollingRandomAccessFile name="File" fileName="${LOG_HOME}/${FILE_NAME}.log" filePattern="${LOG_HOME}/$${date:yyyy-MM}/${FILE_NAME}-%d{yyyy-MM-dd}-%i.log">
+      <PatternLayout pattern="${FILE_LOG_PATTERN}"/>
+      <Policies>
+        <TimeBasedTriggeringPolicy interval="1"/>
+        <SizeBasedTriggeringPolicy size="100 MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="10"/>
+    </RollingRandomAccessFile>
+  </Appenders>
+  <Loggers>
+    <Root level="${LOG_LEVEL}">
+      <AppenderRef ref="Console"/>
+    </Root>
+  </Loggers>
+</Configuration>

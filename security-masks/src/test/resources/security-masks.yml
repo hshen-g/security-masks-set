@@ -1,0 +1,49 @@
+#掩码符号：默认是*
+placeholder: '*'
+#分类定义：根据字段长度，定义掩码规则
+# len：闭区间 [min,max]，如果max为 +，表示不限制长度
+# retained：保留字符，H4T2 表示保留头2个字符，尾2个字符，剩余的填充掩码符号
+classify:
+  #客户名称（包含企业名称）
+  CNAME:
+    - {"len":'1,3',"retained":'H1'}
+    - {"len":'4,4',"retained":'H2'}
+    - {"len":'5,6',"retained":'H2T2'}
+    - {"len":'7,+',"retained":'H4T2'}
+  #企业名称
+  COMPANYNAME:
+    - { "len": '5,6',"retained": 'H2T2' }
+    - { "len": '7,+',"retained": 'H4T2' }
+  #手机号
+  PHONE:
+    - {"retained":'H3T4'}
+  #银行卡号
+  BANKCARDNO:
+    - {"retained":'T4'}
+  #身份证号
+  IDCARDNO:
+    - { "retained": 'H6T4' }
+#引用配置：即什么场景（一般是API）使用什么掩码配置，优先级-- disabled>specified>global
+reference:
+  #场景路径分割符：默认是/
+  pathSeparator: '/'
+  #全局缺省配置：字段掩码映射关系---常用的字段及其对应的掩码类型，适配任何场景
+  global:
+    'custName': CNAME
+    'name': CNAME
+    'idCardNo': IDCARDNO
+    'companyName': COMPANYNAME
+    'phone': PHONE
+    'bankCardNo': BANKCARDNO
+  #禁用的场景配置：在这里配置的场景（支持通配符，Ant风格），不做掩码处理，优先级比specified的高
+  disabled:
+    - '/api/orders/*'
+    - 'com.xxx.getter.*Getter'
+    - '/api/settlement/overdue'
+  #指定场景配置：指定场景下字段掩码映射关系，会覆盖global配置（按照场景维度覆盖，而非字段维度覆盖）
+  specified:
+    'com.eigpay.leasing.cust.provider.CustomerBasicFacade.pageQuery':
+      'custName': CNAME
+      'mobilePhone': PHONE
+      'bankCardNo': BANKCARDNO
+      'idCardNo': IDCARDNO

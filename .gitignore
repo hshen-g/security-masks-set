@@ -1,0 +1,13 @@
+.DS_Store
+*.log
+.svn
+.idea
+*.iml
+bin
+build
+target
+.project
+.classpath
+.settings
+.metadata
+/dst.pdf
