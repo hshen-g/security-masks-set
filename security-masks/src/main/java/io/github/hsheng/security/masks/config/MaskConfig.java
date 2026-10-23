@@ -35,7 +35,8 @@ public class MaskConfig {
         this.placeholder = StrUtil.blankToDefault(placeholder, "*");
     }
     public void init(){
-        this.classify.putAll(DefaultMaskClassify.get());
+        // 内置规则仅补缺，不覆盖已加载的用户配置
+        DefaultMaskClassify.get().forEach((k,v) -> this.classify.putIfAbsent(k,v));
     }
     /**
      * 查找掩码分类
