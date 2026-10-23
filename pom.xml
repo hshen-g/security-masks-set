@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>cn.seehoo.framework</groupId>
+	<groupId>io.github.hshen-g</groupId>
 	<artifactId>security-masks-set</artifactId>
 	<version>${revision}</version>
 	<name>SECURITY-MASKS-SET</name>
@@ -9,7 +9,7 @@
         信息安全-掩码工具集合
     </description>
     <properties>
-        <revision>1.0-SNAPSHOT</revision>
+        <revision>1.0.0</revision>
         <java.version>1.8</java.version>
         <project.encoding>UTF-8</project.encoding>
         <project.build.sourceEncoding>${project.encoding}</project.build.sourceEncoding>
@@ -30,7 +30,7 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>cn.seehoo.framework</groupId>
+                <groupId>io.github.hshen-g</groupId>
                 <artifactId>security-masks</artifactId>
                 <version>${revision}</version>
             </dependency>

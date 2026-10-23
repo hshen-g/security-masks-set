@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-cn.seehoo.framework.security.masks.boot.ApiSecurityMasksAutoConfiguration
+io.github.hsheng.security.masks.boot.ApiSecurityMasksAutoConfiguration

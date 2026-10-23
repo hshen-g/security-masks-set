@@ -11,3 +11,6 @@ target
 .settings
 .metadata
 /dst.pdf
+.flattened-pom.xml
+.flattened-pom.xml.releaseBackup
+release.properties
